@@ -16,10 +16,13 @@ export const metadata = {
   description: "Futuristic 3D digital experiences.",
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en" className="scroll-smooth">
-      {/* The suppressesHydrationWarning prevents errors when switching themes */}
       <body 
         className={`${spaceGrotesk.variable} ${inter.variable} antialiased`} 
         suppressHydrationWarning
