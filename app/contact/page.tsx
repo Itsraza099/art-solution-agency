@@ -6,13 +6,20 @@ import Navbar from '@/components/Navbar';
 import { Calendar, Mail, MapPin, X } from 'lucide-react';
 
 export default function Contact() {
-  const [dark, setDark] = useState(true);
+  const [dark, setDark] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('theme');
+      return saved === 'dark';
+    }
+    return true;
+  });
   const [lang, setLang] = useState<'en' | 'fr'>('en');
   const [selectedOption, setSelectedOption] = useState<'calendar' | 'email' | 'maps' | null>(null);
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+    localStorage.setItem('theme', dark ? 'dark' : 'light');
   }, [dark]);
 
   const content = {

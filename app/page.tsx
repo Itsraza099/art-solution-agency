@@ -7,11 +7,18 @@ import Navbar from '@/components/Navbar';
 
 export default function RefractStyleAgency() {
   const [isLoading, setIsLoading] = useState(true);
-  const [dark, setDark] = useState(true);
+  const [dark, setDark] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('theme');
+      return saved === 'dark';
+    }
+    return true;
+  });
   const [lang, setLang] = useState<'en' | 'fr'>('en');
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+    localStorage.setItem('theme', dark ? 'dark' : 'light');
   }, [dark]);
 
   useEffect(() => {

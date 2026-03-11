@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Sun, Moon } from 'lucide-react';
 import Link from 'next/link';
@@ -15,7 +15,13 @@ interface NavbarProps {
 
 export default function Navbar({ dark, setDark, lang, setLang }: NavbarProps) {
   const [hoveredNav, setHoveredNav] = useState<number | null>(null);
+  const [mounted, setMounted] = useState(false); // New: Hydration fix
   const pathname = usePathname();
+
+  // New: Set mounted to true once the component is in the browser
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const navItems = lang === 'en' 
     ? [
@@ -59,9 +65,11 @@ export default function Navbar({ dark, setDark, lang, setLang }: NavbarProps) {
               onMouseLeave={() => setHoveredNav(null)}
               className="relative px-6 py-2 text-sm font-medium transition-colors z-10"
             >
+              {/* Only show text if mounted to avoid server mismatch */}
               <motion.span key={`${lang}-${item.label}`} {...textFade}>
-                {item.label}
+                {mounted ? item.label : ""}
               </motion.span>
+              
               {hoveredNav === i && (
                 <motion.div
                   layoutId="nav-highlight"
@@ -85,12 +93,13 @@ export default function Navbar({ dark, setDark, lang, setLang }: NavbarProps) {
             onClick={() => setDark(!dark)}
             className="w-10 h-10 rounded-full bg-[var(--card-bg)] backdrop-blur-xl border border-white/10 hover:scale-105 transition-transform flex items-center justify-center"
           >
-            {dark ? <Sun size={16} /> : <Moon size={16} />}
+            {/* The Sun/Moon icon was the primary cause of your error */}
+            {mounted ? (dark ? <Sun size={16} /> : <Moon size={16} />) : <div className="w-4 h-4" />}
           </button>
           
           <button className="hidden md:block bg-gradient-to-r from-purple-500 to-indigo-500 text-white px-5 py-2.5 rounded-full text-sm font-bold shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 transition-all min-w-[150px]">
             <motion.span key={`cta-${lang}`} {...textFade} className="block">
-              {lang === 'en' ? 'Work With Us' : 'Collaborer'}
+              {mounted ? (lang === 'en' ? 'Work With Us' : 'Collaborer') : ""}
             </motion.span>
           </button>
         </div>

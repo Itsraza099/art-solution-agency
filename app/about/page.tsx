@@ -6,11 +6,18 @@ import Navbar from '@/components/Navbar';
 import { Code2, Sparkles, Cpu, Layers, ArrowRight } from 'lucide-react';
 
 export default function About() {
-  const [dark, setDark] = useState(true);
+  const [dark, setDark] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('theme');
+      return saved === 'dark';
+    }
+    return true;
+  });
   const [lang, setLang] = useState<'en' | 'fr'>('en');
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+    localStorage.setItem('theme', dark ? 'dark' : 'light');
   }, [dark]);
 
   const content = {
