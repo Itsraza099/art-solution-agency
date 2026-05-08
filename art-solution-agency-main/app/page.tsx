@@ -251,3 +251,35 @@ export default function RefractStyleAgency() {
     </main>
   );
 }
+
+      {/* CONTACT FORM */}
+      <section className="py-40 px-6 flex justify-center">
+        <div className="w-full max-w-4xl glass-card rounded-[4rem] p-12 md:p-24 border border-white/10">
+          <div className="flex flex-col md:flex-row gap-16">
+            <div className="flex-1">
+              <h2 className="text-6xl font-black italic leading-none mb-6">REACH <br />OUT.</h2>
+              <p className="text-zinc-500">Currently accepting high-impact creative partnerships for Q3 2026.</p>
+            </div>
+            <form className="flex-[1.5] space-y-6">
+              <input type="text" placeholder="YOUR IDENTITY" className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 outline-none focus:border-purple-500 transition-all font-bold text-xs tracking-widest" />
+              <textarea placeholder="THE VISION" rows={4} className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 outline-none focus:border-purple-500 transition-all font-bold text-xs tracking-widest" />
+              <button className="w-full bg-purple-600 py-5 rounded-2xl font-black text-xs uppercase tracking-[0.4em] hover:bg-purple-500 shadow-xl shadow-purple-500/20 flex justify-center items-center gap-3 group">
+                SEND SIGNAL <Send size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="py-20 px-6 border-t border-white/5 text-center">
+        <div className="text-3xl font-black italic tracking-tighter mb-8">ART SOLUTION</div>
+        <div className="flex justify-center gap-12 text-[10px] font-bold tracking-[0.5em] uppercase text-zinc-500">
+          <span>Twitter</span>
+          <span>Behance</span>
+          <span>Awwwards</span>
+        </div>
+      </footer>
+    </main>
+  );
+}
