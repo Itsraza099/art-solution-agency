@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Code2, Sparkles, Cpu, Layers } from 'lucide-react';
+import { ArrowRight, Code2, Sparkles, Cpu, Layers, Send } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 
 export default function RefractStyleAgency() {
