@@ -248,9 +248,6 @@ export default function RefractStyleAgency() {
           </motion.div>
         </div>
       </section>
-    </main>
-  );
-}
 
       {/* CONTACT FORM */}
       <section className="py-40 px-6 flex justify-center">
